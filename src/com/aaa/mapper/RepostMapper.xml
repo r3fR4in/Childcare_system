@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指定映射到dao层 -->
+<mapper namespace="com.aaa.mapper.RepostMapper">
+
+	<select id="findOne" resultType="repost">
+		select * from repost where id=#{id}
+		desc
+	</select>
+
+	<!-- 查询所有数据id降序 -->
+	<select id="findAll" resultType="repost">
+		select * from repost order by id
+		desc
+	</select>
+
+	<!-- 增加数据 -->
+	<insert id="add" parameterType="repost">
+		insert into repost
+		values(default,#{name},#{text},default,#{Authorid})
+	</insert>
+
+	<!-- 更新数据-通过id -->
+	<update id="upd" parameterType="repost">
+		update repost set
+		name=#{name},text=#{text}
+		where id =#{id}
+	</update>
+
+	<!-- 删除数据-通过id -->
+	<delete id="del" parameterType="int">
+		delete from repost where id=#{id}
+	</delete>
+</mapper>

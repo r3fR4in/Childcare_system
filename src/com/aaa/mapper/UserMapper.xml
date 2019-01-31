@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 1.指定映射的对象是usermapper类也就是dao层 -->
+<mapper namespace="com.aaa.mapper.UserMapper">
+
+	<select id="SelectAllUser" resultType="user" parameterType="user">>
+	select * from user order by id
+	</select>
+	
+	<!-- 查询返回的是实体类对象也可以写实体的绝对路径com.aaa.entity.User -->
+	<select id="CheckLoginAndPwd" resultType="user" parameterType="user">
+		select*from user where username=#{username} and password=#{password}
+	</select>
+	
+	<!-- 增加，default默认 -->
+	<insert id="addUser" parameterType="user">
+		insert into user
+		values(default,#{username},#{password},#{address},#{state},#{per})
+	</insert>
+	
+	<delete id="delUser" parameterType="user">
+		delete from user where id = #{id}
+	</delete>
+	
+	<update id="updUser" parameterType="user">
+		update user set
+		name=#{name},password=#{price},address=#{address}
+		where id =#{id}
+	</update>
+
+</mapper>

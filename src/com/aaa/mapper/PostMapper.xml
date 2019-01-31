@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指定映射到dao层 -->
+<mapper namespace="com.aaa.mapper.PostMapper">
+
+	<!-- 查询单条数据，类型int返回post类型 -->
+	<select id="findOne" parameterType="int" resultType="post">
+		select *
+		from post where id=#{id}
+	</select>
+
+	<!-- 查询所有数据id降序 -->
+	<select id="findAll" resultType="post">
+		select * from post order by id
+		desc
+	</select>
+
+	<!-- 增加数据 -->
+	<insert id="add" parameterType="post">
+		insert into post
+		values(default,#{name},#{text},default,#{Authorid})
+	</insert>
+
+	<!-- 更新数据-通过id -->
+	<update id="upd" parameterType="post">
+		update post set
+		name=#{name},text=#{text}
+		where id =#{id}
+	</update>
+
+	<!-- 删除数据-通过id -->
+	<delete id="del" parameterType="int">
+		delete from post where id=#{id}
+	</delete>
+</mapper>
